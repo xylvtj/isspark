@@ -9,6 +9,7 @@ public class MainForm extends JFrame {
      * @author 1109030125
      */
     private static final long serialVersionUID = 1L;
+
     /* 主窗体里面的若干元素 */
     private JFrame mainForm = new JFrame("TXT文件加密"); // 主窗体，标题为“TXT文件加密”
     private JLabel label1 = new JLabel("请选择待加密或解密的文件：");
@@ -19,6 +20,7 @@ public class MainForm extends JFrame {
     public static JButton buttonBrowseTarget = new JButton("浏览"); // 浏览按钮
    // public static JButton buttonEncrypt = new JButton("加密"); // 加密按钮
    // public static JButton buttonDecrypt = new JButton("解密"); // 解密按钮
+
     public MainForm() {
         Container container = mainForm.getContentPane();
         /* 设置主窗体属性 */

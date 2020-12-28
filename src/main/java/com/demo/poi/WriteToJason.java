@@ -385,4 +385,28 @@ public class WriteToJason {
     public void setTxtPath(String txtPath) {
         this.txtPath = txtPath;
     }
+
+    public int getBeginRowNumber() {
+        return beginRowNumber;
+    }
+
+    public void setBeginRowNumber(int beginRowNumber) {
+        this.beginRowNumber = beginRowNumber;
+    }
+
+    public int getLastGradecolumn() {
+        return lastGradecolumn;
+    }
+
+    public void setLastGradecolumn(int lastGradecolumn) {
+        this.lastGradecolumn = lastGradecolumn;
+    }
+
+    public int getDeviceColumnNumber() {
+        return DeviceColumnNumber;
+    }
+
+    public void setDeviceColumnNumber(int deviceColumnNumber) {
+        DeviceColumnNumber = deviceColumnNumber;
+    }
 }

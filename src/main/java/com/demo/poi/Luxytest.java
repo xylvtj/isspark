@@ -14,7 +14,7 @@ import java.util.Map;
 public class Luxytest {
 
 	public int dayBack = 0;
-	public String path = "C:\\Users\\jky-luxy\\Downloads\\edge\\导出数据2020-12-25_9724.xls";
+	public String path = "C:\\Users\\jky-luxy\\Downloads\\edge\\导出数据2020-12-28_93019.xls";
 	public String pathTemp = "C:\\工作文件\\待导入数据\\";
 
 	/*public String basePath = "\\";
