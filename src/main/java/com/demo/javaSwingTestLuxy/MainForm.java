@@ -11,6 +11,8 @@ import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class MainForm extends JFrame {
      */
     private static final long serialVersionUID = 1L;
     /* 主窗体里面的若干元素 */
-    private JFrame mainForm = new JFrame("luxyTest"); // 主窗体，标题为“TXT文件加密”
+    private JFrame mainForm = new JFrame("分项工具2.0"); // 主窗体，标题为“TXT文件加密”
 
     public static JButton buttonBrowseSource = new JButton("选择导入excel文件"); // 浏览按钮
 
@@ -101,68 +103,68 @@ public class MainForm extends JFrame {
             }
         });
 
-
         /*
          * 同时显示文本和图片
          */
-
         JLabel label03 = new JLabel();
-        label03.setText("刘志远的分项工具1.0");
-        Dimension d = new Dimension(200,300);
+        label03.setText("");
+        Dimension d = new Dimension(240,310);
 
         label03.setPreferredSize(d);
-        label03.setIcon(new ImageIcon("C:\\Test\\liuzhiyuan.png"));
+
+
+        String realPath = MainForm.class.getClassLoader().getResource("")
+                .getFile();
+       // java.io.File file = new java.io.File(realPath);
+        //realPath = file.getParentFile().getAbsolutePath(); //获取jar包的上级目录
+        try{
+            realPath = URLDecoder.decode(realPath, "UTF-8");
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println(realPath);
+        //label03.setIcon(new ImageIcon("C:\\liuzhiyuan222.jpg"));
+        label03.setIcon(new ImageIcon(realPath+"liuzhiyuan222.jpg"));
         label03.setHorizontalTextPosition(SwingConstants.CENTER);   // 水平方向文本在图片中心
         label03.setVerticalTextPosition(SwingConstants.BOTTOM);     // 垂直方向文本在图片下方
-
+        label03.setText("刘志远的分项工具2.0");
 
         //文本输入框 输入数据起始行数 设备号列数 末项分级列数
         textField1.setDocument(new NumberTextField());
-        textField1.setHorizontalAlignment(JTextField.RIGHT);
+        textField1.setHorizontalAlignment(JTextField.LEFT);
         JLabel textFieldLab1=new JLabel("输入数据起始行数:");
 
-
         textField2.setDocument(new NumberTextField());
-        textField2.setHorizontalAlignment(JTextField.RIGHT);
-        JLabel textFieldLab2=new JLabel("设备号列数:");
-
+        textField2.setHorizontalAlignment(JTextField.LEFT);
+        JLabel textFieldLab2=new JLabel("           设备号列数:");
 
         textField3.setDocument(new NumberTextField());
-        textField3.setHorizontalAlignment(JTextField.RIGHT);
-        JLabel textFieldLab3=new JLabel("末项分级列数:");
-
-
-
-
-
-
-
-
+        textField3.setHorizontalAlignment(JTextField.LEFT);
+        JLabel textFieldLab3=new JLabel("        末项分级列数:");
 
         // 创建第一个水平箱容器
         Box hBox01 = Box.createHorizontalBox();
-
-        hBox01.add(textField1);
         hBox01.add(textFieldLab1);
-        hBox01.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
+        hBox01.add(textField1);
+
+       // hBox01.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
 
         // 创建第二水平箱容器
         Box hBox02 = Box.createHorizontalBox();
-
-        hBox02.add(textField2);
         hBox02.add(textFieldLab2);
-        hBox02.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
+        hBox02.add(textField2);
+
+       // hBox02.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
 
         Box hBox03 = Box.createHorizontalBox();
-
-        hBox03.add(textField3);
         hBox03.add(textFieldLab3);
-        hBox03.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
+        hBox03.add(textField3);
+
+       // hBox03.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
 
         Box hBox04 = Box.createHorizontalBox();
         hBox04.add(buttonBrowseSource);
-        hBox04.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
-
+       // hBox04.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
 
       /*  Box hBox05 = Box.createHorizontalBox();
         hBox05.add(buttonTxtPath);
@@ -170,20 +172,11 @@ public class MainForm extends JFrame {
 
         Box hBox06 = Box.createHorizontalBox();
         hBox06.add(buttonenter);
-        hBox06.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
+       // hBox06.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
 
         Box hBox07 = Box.createHorizontalBox();
         hBox07.add(label03);
-        hBox07.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
-
-
-
-
-
-
-
-
-
+        //hBox07.add(Box.createHorizontalGlue()); // 添加一个水平方向胶状的不可见组件，撑满剩余水平空间
 
 
         // 创建一个垂直箱容器，放置上面两个水平箱（Box组合嵌套）
@@ -195,20 +188,13 @@ public class MainForm extends JFrame {
        // vBox.add(hBox05);
         vBox.add(hBox06);
         vBox.add(hBox07);
-
-
-
         mainForm.setContentPane(vBox);
-
         mainForm.setSize(300, 500);
         mainForm.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);// 设置主窗体关闭按钮样式
         mainForm.setLocationRelativeTo(null);// 设置居于屏幕中央
         mainForm.setResizable(false);// 设置窗口不可缩放
         mainForm.setVisible(true);// 显示窗口
         mainForm.pack();
-
-
-
     }
     class NumberTextField extends PlainDocument {
         public NumberTextField() {
@@ -233,6 +219,7 @@ public class MainForm extends JFrame {
             }
         }
     }
+
     public static void main(String args[]) {
 
         new MainForm();

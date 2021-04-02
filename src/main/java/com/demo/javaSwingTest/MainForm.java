@@ -11,7 +11,7 @@ public class MainForm extends JFrame {
     private static final long serialVersionUID = 1L;
 
     /* 主窗体里面的若干元素 */
-    private JFrame mainForm = new JFrame("TXT文件加密"); // 主窗体，标题为“TXT文件加密”
+    private JFrame mainForm = new JFrame("TXT文哈哈哈件加密"); // 主窗体，标题为“TXT文件加密”
     private JLabel label1 = new JLabel("请选择待加密或解密的文件：");
     private JLabel label2 = new JLabel("请选择加密或解密后的文件存放位置：");
    // public static JTextField sourcefile = new JTextField(); // 选择待加密或解密文件路径的文本域

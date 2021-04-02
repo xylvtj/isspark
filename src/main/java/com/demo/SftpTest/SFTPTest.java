@@ -215,6 +215,7 @@ public class SFTPTest {
                         System.out.println("上传文件成功！");
                     }
                 }
+                System.out.println("共上传"+ files.length+"个文件");
             } else {
                 System.out.println("文件：" + file.getPath());
             }

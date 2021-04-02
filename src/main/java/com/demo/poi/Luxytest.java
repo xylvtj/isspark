@@ -14,7 +14,7 @@ import java.util.Map;
 public class Luxytest {
 
 	public int dayBack = 0;
-	public String path = "C:\\Users\\jky-luxy\\Downloads\\edge\\导出数据2020-12-28_93019.xls";
+	public String path = "C:\\Users\\jky-luxy\\Downloads\\edge\\导出数据2021-2-22_12154.xls";
 	public String pathTemp = "C:\\工作文件\\待导入数据\\";
 
 	/*public String basePath = "\\";
@@ -64,7 +64,7 @@ public class Luxytest {
 
 				int length = list.size();
 		        for(int i=0;i<length;i++ ) {
-
+					System.out.println(i);
 		        	Data data = list.get(i);
 		        	Date timed = data.getDateTime();
 
@@ -162,6 +162,7 @@ public class Luxytest {
 	public  void transferFile(String pathT){
 		SFTPTest sftp = new SFTPTest(user , pass , ip, port );
 		sftp.login();
+		System.out.println("------连接:"+ip+"-----");
 		try{
 			sftp.uploadallfile(direction,  pathT);
 
@@ -182,13 +183,6 @@ public class Luxytest {
 		String pathT = luxy.GenerateXml(luxy);
 		luxy.transferFile(pathT);
 	}
-
-	
-		
-	public static void main(String[] args) throws ParseException {
-		transferXml();
-
-	}
 	public int getDayBack() {
 		return dayBack;
 	}
@@ -203,4 +197,19 @@ public class Luxytest {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+
+
+
+
+
+
+
+
+		
+	public static void main(String[] args) throws ParseException {
+		transferXml();
+
+	}
+
 }

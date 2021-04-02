@@ -272,10 +272,12 @@ public class WriteToJason {
         for (EnergyConsumptionGrade ecg : list) {
             if (ecg.getFinalGrade().equals(total)) {
 
-                if (!map.containsKey("total")) {
+                if (!map.containsKey(total)) {
                     map.put(total, total + ":" + ecg.getDeviceId() + "+" + "__" + ecg.getDeviceId() + ",");
                     System.out.println(map.get(total));
+                    System.out.println("第一次进入------------");
                 } else {
+                    System.out.println("测试哈哈哈哈------------");
                     String[] strs = map.get(total).split("__");
                     String str0 = strs[0] + ecg.getDeviceId() + "+";
                     String str1 = strs[1] + ecg.getDeviceId() + ",";

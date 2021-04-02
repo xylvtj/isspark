@@ -1,4 +1,7 @@
-package com.demo.poi;
+package com.demo.subtotal;
+
+import com.demo.poi.Data;
+import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
 import java.text.ParseException;
@@ -7,12 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-
 
 
 public class ExcelData {
@@ -57,7 +54,16 @@ public class ExcelData {
 	}
 	public String getExcelDateByIndex(int row, int column) {
 		Row row1 = sheet.getRow(row);
-		String cell = row1.getCell(column).toString();
+		String cell = "";
+		if(row1!=null){
+			if(row1.getCell(column)!=null){
+				row1.getCell(column).setCellType(CellType.STRING);
+				cell = row1.getCell(column).toString();
+				//System.out.println(row1.getCell(column).getCellType());
+			}
+
+		}
+
 		return cell;
 	}
 
@@ -90,6 +96,38 @@ public class ExcelData {
 			//System.out.println("--");
 		}
 	}
+	public String[][] getExcelData(){
+		int rows = sheet.getPhysicalNumberOfRows();
+		int columns = sheet.getRow(0).getPhysicalNumberOfCells();
+
+		//System.out.println(rows);
+		//System.out.println(columns);
+		String data[][] = null;
+		data = new String[rows][columns];
+		for(int i=0;i<rows;i++){
+			for(int j=0;j<columns;j++){
+
+				data[i][j]=getExcelDateByIndex(i,j);
+			}
+		}
+		return data;
+	};
+
+	public String[][] getExcelData(String splite){
+		int rows = sheet.getPhysicalNumberOfRows();
+		String temp = getExcelDateByIndex(0,0);
+		int columns = temp.split(splite).length;
+
+		//System.out.println(rows);
+		//System.out.println(columns);
+		String data[][] = null;
+		data = new String[rows][columns];
+		for(int i=0;i<rows;i++){
+			data[i] = getExcelDateByIndex(i,0).split(splite);
+
+		}
+		return data;
+	};
 
 	public List<Data> GetExcelData(int firstColumnNumber,int lastColumnNumber,int firstRow) throws ParseException {
 		// 取得行数
@@ -157,13 +195,42 @@ public class ExcelData {
 		}while(!temp.equals("~"));
 		return str;
 	}
+	public String[][] getExcelDataExceptHeaders(){
+		int rows = sheet.getPhysicalNumberOfRows();
+		int columns = sheet.getRow(1).getPhysicalNumberOfCells();
+
+		//System.out.println(rows);
+		//System.out.println(columns);
+
+		String data[][] = null;
+		data = new String[rows][columns];
+		for(int i=1;i<rows;i++){
+			for(int j=0;j<columns;j++){
+
+				data[i-1][j]=getExcelDateByIndex(i,j);
+			}
+		}
+		return data;
+	}
+
+	public void printData(String[][] data){
+		for(int i=0;i<data.length;i++){
+			String str = "";
+			for(int j=0;j<data[0].length;j++){
+
+				str = str + data[i][j] +"   ";
+			}
+			System.out.println(str);
+		}
+	}
 
 	public static void main(String[] args) throws ParseException {
 		System.out.print("sb luxy  test begin --------");
 
-		ExcelData sheet1 = new ExcelData("D:\\工作文档\\金山医院电表回路清单2020.11.12.xlsx", "");
+		ExcelData sheet1 = new ExcelData("C:\\工作文件\\智慧所\\2021_03_17_叶大师_上海中心水务\\waterdata.xlsx", "");
 
-		sheet1.readExcelData();
+		String data[][]= sheet1.getExcelData();
+		sheet1.printData(data);
 		//sheet1.GetExcelData(2,4,1);
 
 	}
