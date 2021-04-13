@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ShanghaiTowerCount0402 {
-    private static String path1 = "C:\\工作文件\\智慧所\\2021_04_02_叶大师_上海中心\\data.xlsx";
+    private static String path1 = "C:\\工作文件\\智慧所\\2021_04_02_叶大师_上海中心\\dataB1.xls";
 
     public static String[][] getDataFromExcelBySplit(String path) {
         ExcelData excelData = new ExcelData(path, "");
@@ -48,9 +48,9 @@ public class ShanghaiTowerCount0402 {
                 List<CommonType> list = new ArrayList<CommonType>();
                 String type = temp[1];
                 CommonType ct = new CommonType();
-                ct.setCell1(temp[1]);
-                ct.setCell2(temp[4]);
-                ct.setCell3(temp[5]);
+                ct.setCell1(temp[0]);
+                ct.setCell2(temp[2]);
+                ct.setCell3(temp[3]);
                 if (map.containsKey(type)) {
                     list = map.get(type);
                 }
@@ -80,10 +80,10 @@ public class ShanghaiTowerCount0402 {
                 compareCt(ct,listNew);
             }
             data[i][0] = type;
-            System.out.println(listNew[0].getCell3());
-            System.out.println(listNew[1].getCell3());
-            Double d1 = Double.parseDouble(listNew[0].getCell3());
-            Double d2 = Double.parseDouble(listNew[1].getCell3());
+           // System.out.println(listNew[0].getCell2());
+          //  System.out.println(listNew[1].getCell2());
+            Double d1 = Double.parseDouble(listNew[0].getCell2());
+            Double d2 = Double.parseDouble(listNew[1].getCell2());
             data[i][1] = (d2-d1)+"";
             i++;
         }
@@ -95,14 +95,14 @@ public class ShanghaiTowerCount0402 {
         String timeCt1 = listNew[0].getCell2();
         String timeCt2 = listNew[1].getCell2();
 
-        System.out.println(timeCt1+"    "+timeCt2);
+      //  System.out.println(timeCt1+"    "+timeCt2);
         if (compareStringAsDouble(timeCt, timeCt1).equals("1")) {
             listNew[0] = ct;
-            System.out.println("<");
+         //   System.out.println("<");
         }
         if (compareStringAsDouble(timeCt, timeCt2).equals("2")) {
             listNew[1] = ct;
-            System.out.println(">");
+          //  System.out.println(">");
         }
     }
 
@@ -111,7 +111,7 @@ public class ShanghaiTowerCount0402 {
         Double d1 = Double.parseDouble(s1);
         Double d2 = Double.parseDouble(s2);
 
-        System.out.println("d1 = "+d1+"----d2 = "+d2);
+        //System.out.println("d1 = "+d1+"----d2 = "+d2);
         if(d1<d2){
             status = "1";
         }else if(d1>d2){

@@ -15,10 +15,8 @@ public class MainCount {
     private String pathOut2 = "C:\\工作文件\\智慧所\\2021_03_17_叶大师_上海中心水务\\subType.xls";
 
     //从excel中读取分类与数据的映射关系
-    public Map<String, String> getRelationFromExcel() {
-        ExcelData excelData = new ExcelData(pathRalation, "");
+    public Map<String, String> getRelationFromExcel(String [][] data ) {
 
-        String data[][] = excelData.getExcelDataExceptHeaders();
 
         Map<String, String> map = new HashMap<String, String>();
 
@@ -341,28 +339,38 @@ dataFinal = getHeaders(dataFinal);
         return dataHeaders;
     }
 
+    private static String[][] getRelationData(String pathRalation) {
+        ExcelData excelData = new ExcelData(pathRalation, "");
+        String data[][] = excelData.getExcelDataExceptHeaders();
+        return data;
+    }
+
+
 
     public static void main(String[] args) throws ParseException, IOException {
         MainCount mc = new MainCount();
 
-        // mc.getId("诚品书店1-诚品区域-DN50-190493282");
+        //从关系表中取得数据
+        String data[][] = getRelationData(mc.getPathRalation());
+
         //得到关系表中的数据 返回map
-        Map<String, String> relationMap = mc.getRelationFromExcel();
+        Map<String, String> relationMap = mc.getRelationFromExcel(data);
+
         //取得待分类表中的数据(除表头)
-        String[][] data = mc.getDataFromExcel();
+        String[][] data1 = mc.getDataFromExcel();
 
-
-        String[][] dataFinal = mc.getSubType(data, relationMap);
-
+        //分类展示数据加汇总数据
+        String[][] dataFinal = mc.getSubType(data1, relationMap);
         //写入到excel中
         mc.writeToExcel(dataFinal, mc.getPathOut2());
 
         //分类汇总 并输出到excel
-        Map<String, List<String>> map = mc.countSubTotal(data, relationMap);
+        Map<String, List<String>> map = mc.countSubTotal(data1, relationMap);
        // mc.printMap(map);
          mc.writeToExcel(map,mc.getPathOut1());
 
     }
+
 
     public String getPathData() {
         return pathData;

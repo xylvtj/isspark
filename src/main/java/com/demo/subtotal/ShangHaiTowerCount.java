@@ -255,6 +255,10 @@ public class ShangHaiTowerCount {
 
     public static void main(String[] args) throws ParseException, IOException {
         System.out.println("start");
+
+
+
+
         ShangHaiTowerCount stc = new ShangHaiTowerCount();
         String[][] data = getDataFromExcel(path1);
         String[][] data1 = getDataFromExcel(path2);
