@@ -118,7 +118,7 @@ logger.info("ceshi--------");
 
 
     public static void main(String[] args) throws ParseException {
-        System.out.println("LT测试开始: ");
+        System.out.println("LT测试开始: 嘿嘿嘿");
         LuxyTest2 lt = new LuxyTest2();
 
         //分项模板文字与对应编码转换 含国标和地标
